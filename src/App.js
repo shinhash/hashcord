@@ -4,44 +4,52 @@ import { useEffect, useState } from 'react';
 
 function App() {
   const [val, setVal] = useState('');
-  const [td1, setTd1] = useState('');
-  const [td2, setTd2] = useState('');
-  const [td3, setTd3] = useState('');
-  const [td4, setTd4] = useState('');
-  const [userObj, setUserObj] = useState({});
+  const [userId, setUserId] = useState('');
+  const [userPw, setUserPw] = useState('');
+  const [userPwRe, setUserPwRe] = useState('');
+  const [userName, setUserName] = useState('');
+  const [userEmail, setUserEmail] = useState('');
   const [ddjArr, setDdjArr] = useState([]);
 
   const valOnChange = (e) => {
-    console.log(e.target.name);
+    const targetName = e.target.name;
+    const targetValue = e.target.value;
+    if(targetName === 'userId') setUserId(targetValue);
+    if(targetName === 'userPw') setUserPw(targetValue);
+    if(targetName === 'userPwRe') setUserPwRe(targetValue);
+    if(targetName === 'userName') setUserName(targetValue);
+    if(targetName === 'userEmail') setUserEmail(targetValue);
+    if(targetName === 'val') setVal(targetValue);
   }
   const submitBtn = (e) => {
-    // console.log("ddjArr : ", ddjArr);
-  }
-  const tagNameUpper = (value) => {
-    let originVal = value;
-    let resultTagName = "";
-    if(originVal.type === String){
-      resultTagName = originVal.substring(0,1).toUpperCase() + originVal.substring(1);
-    }else{
-      resultTagName =  "";
-    }
-    return resultTagName;
+    console.log("ddjArr : ", ddjArr);
   }
 
   const arrAddBtn = () => {
-    console.log("ddjArr?.length : ", ddjArr?.length);
-    setUserObj({id:`test${ddjArr?.length + 1}`, pw:"1234", name:`테스트유저${ddjArr?.length + 1}`, addr:"대전서구 갈마동"});
+    
+    setDdjArr(ddjArr => [
+      ...ddjArr, 
+      {
+        id : ddjArr.length+1,
+        userId : userId, 
+        userPw : userPw, 
+        userPwRe : userPwRe,
+        userName : userName, 
+        userEmail : userEmail,
+      }
+    ]);
   }
 
   useEffect(() => {
-    // setUserObj({id:`test${ddjArr?.length + 1}`, pw:"1234", name:`테스트유저${ddjArr?.length + 1}`, addr:"대전서구 갈마동"});
-    console.log("use Effect userObj : ", userObj);
-    console.log("use Effect ddjArr before : ", ddjArr);
-    setDdjArr([...ddjArr, userObj]);
-  }, [userObj]);
+    alert("행 추가!!!");
 
-  useEffect(() => {
-    console.log("use Effect ddjArr after : ", ddjArr);
+    // const userList = document.createElement('div');
+    // const div = document.createElement('div');
+    // div.setAttribute('id', ddjArr.length+1);
+    // div.innerHTML = userName;
+    // userList.append(div);
+    // document.body.append(userList);
+
   }, [ddjArr]);
   
 
@@ -68,12 +76,24 @@ function App() {
       <table>
         <tbody>
           <tr>
-            <td>
-              <input type="text" name="td1" value={td1} onChange={valOnChange} />
-              <input type="text" name="td2" value={td2} onChange={valOnChange} />
-              <input type="text" name="td3" value={td3} onChange={valOnChange} />
-              <input type="text" name="td4" value={td4} onChange={valOnChange} />
-            </td>
+            <td>ID : </td>
+            <td><input type="text" name="userId" value={userId} onChange={valOnChange} /></td>
+          </tr>
+          <tr>
+            <td>PW : </td>
+            <td><input type="password" name="userPw" value={userPw} onChange={valOnChange} /></td>
+          </tr>
+          <tr>
+            <td>PW Re : </td>
+            <td><input type="password" name="userPwRe" value={userPwRe} onChange={valOnChange} /></td>
+          </tr>
+          <tr>
+            <td>Name : </td>
+            <td><input type="text" name="userName" value={userName} onChange={valOnChange} /></td>
+          </tr>
+          <tr>
+            <td>Email : </td>
+            <td><input type="email" name="userEmail" value={userEmail} onChange={valOnChange} /></td>
           </tr>
           <tr>
             <td>
@@ -82,6 +102,11 @@ function App() {
           </tr>
         </tbody>
       </table>
+      <div id='userList'>
+        {ddjArr?.map(a => (
+          <div key={a.id}>이름 : {a.userName}</div>
+        ))}
+      </div>
     </div>
   );
 }
