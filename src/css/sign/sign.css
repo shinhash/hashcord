@@ -1,0 +1,49 @@
+.pageTitle{
+    width: 400px;
+    margin: auto;
+    text-align: center;
+}
+
+.signUpDiv {
+    width: 100%;
+    margin-top: 50px;
+}
+
+.signUpInputDiv{
+    width: 300px;
+    margin: auto;
+}
+
+.signUpInput{
+    width: 300px;
+    height: 30px;
+    border: none;
+    border-radius: 20px;
+    background-color: lightgray;
+    color: white;
+    padding-left: 5%;
+    padding-right: 5%;
+    margin-bottom: 5%;
+    height: 40px;
+    font-size: 15px;
+}
+
+.signUpInputDiv > .signUpBtn{
+    width: 100px;
+    height: 30px;
+    border: none;
+    margin-left: 35%;
+    border-radius: 20px;
+    background-color: lightgray;
+    color: white;
+    font-size: 15px;
+    font-weight: bold;
+}
+
+.signUpInputDiv > .signUpInput::placeholder{
+    color: darkgray;
+}
+
+.signUpBtn:hover{
+    background-color: darkgray;
+}

@@ -3,6 +3,7 @@ import App from '../App';
 import SignIn from '../pages/sign/signin/SignInControllerPage';
 import SignUp from '../pages/sign/signup/SignUpControllerPage';
 import TestComponentControllerPage from "../pages/component/test/component/TestComponentControllerPage";
+import ProtectRoute from "./ProtectRoute";
 
 const Router = createBrowserRouter([
     {
