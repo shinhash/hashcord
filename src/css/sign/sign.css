@@ -4,17 +4,17 @@
     text-align: center;
 }
 
-.signUpDiv {
+.signDiv {
     width: 100%;
     margin-top: 50px;
 }
 
-.signUpInputDiv{
+.signInputDiv{
     width: 300px;
     margin: auto;
 }
 
-.signUpInput{
+.signInput{
     width: 300px;
     height: 30px;
     border: none;
@@ -28,7 +28,7 @@
     font-size: 15px;
 }
 
-.signUpInputDiv > .signUpBtn{
+.signInputDiv > .signBtn{
     width: 100px;
     height: 30px;
     border: none;
@@ -40,10 +40,10 @@
     font-weight: bold;
 }
 
-.signUpInputDiv > .signUpInput::placeholder{
+.signInputDiv > .signInput::placeholder{
     color: darkgray;
 }
 
-.signUpBtn:hover{
+.signBtn:hover{
     background-color: darkgray;
 }
