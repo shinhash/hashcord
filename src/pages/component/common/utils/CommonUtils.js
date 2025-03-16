@@ -23,10 +23,16 @@ export function isValidation(parentDiv){
     }
 
     let isValidateResult = true;
-    if(userPwEvent.value !== '' &&  userPwReEvent.value !== '')
-        isValidateResult = inputUserPwAndUserPwReIsEquals(userPwEvent, userPwReEvent);
-    if(isValidateResult) isValidateResult = inputUserPwRegExp(userPwEvent);
-    if(isValidateResult) isValidateResult = inputUserEmailRegExp(userEmailEvent);
+    if(parentDiv === 'signDiv'){
+        if(userPwEvent.value !== '' && !userPwReEvent) {
+            isValidateResult = inputUserPwRegExp(userPwEvent);
+        }else{
+            if(userPwEvent.value !== '' &&  userPwReEvent.value !== '')
+                isValidateResult = inputUserPwAndUserPwReIsEquals(userPwEvent, userPwReEvent);
+            if(isValidateResult) isValidateResult = inputUserPwRegExp(userPwEvent);
+            if(isValidateResult) isValidateResult = inputUserEmailRegExp(userEmailEvent);
+        }
+    }
     return isValidateResult;
 }
 
