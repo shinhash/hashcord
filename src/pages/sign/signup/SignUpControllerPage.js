@@ -1,9 +1,11 @@
 import SignUpComp from './comp/SignUpComp'
 
-export default function SignUpControllerPage(){
+function SignUpControllerPage(){
     return (
         <>
             <SignUpComp />
         </>
     );
 }
+
+export default SignUpControllerPage;

@@ -2,7 +2,7 @@ import { useState } from "react";
 import '../../../../css/sign/sign.css';
 import { isValidation, inputOnChange } from "../../../component/common/utils/CommonUtils";
 
-export default function SignUpComp(){
+function SignUpComp(){
     const initState = { userId:'', userPw:'', userPwRe:'', userName:'', userEmail:'', };
     const [userInfo, setUserInfo] = useState(initState);
 
@@ -107,3 +107,5 @@ export default function SignUpComp(){
         </>
     );
 }
+
+export default SignUpComp;

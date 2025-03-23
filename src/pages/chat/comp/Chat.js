@@ -1,5 +1,5 @@
 
-function Channels(){
+function Chat(){
     return (
         <div>
             
@@ -7,4 +7,4 @@ function Channels(){
     );
 }
 
-export default Channels;
+export default Chat;

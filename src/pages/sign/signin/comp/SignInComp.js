@@ -2,10 +2,7 @@ import { useState } from "react";
 import '../../../../css/sign/sign.css';
 import { isValidation, inputOnChange } from "../../../component/common/utils/CommonUtils";
 
-export default function SignInComp(){
-    const initState = { userId:'', userPw:'', };
-    const [userInfo, setUserInfo] = useState(initState);
-
+function SignInComp({ userInfo, setUserInfo }){
     function signInClick(){
         const parentDiv = 'signDiv';
         if(!isValidation(parentDiv)) return;
@@ -62,3 +59,5 @@ export default function SignInComp(){
         </>
     );
 }
+
+export default SignInComp;

@@ -20,7 +20,7 @@
     border: none;
     border-radius: 20px;
     background-color: lightgray;
-    color: white;
+    color: darkslategray;
     padding-left: 5%;
     padding-right: 5%;
     margin-bottom: 5%;
@@ -35,7 +35,7 @@
     margin-left: 35%;
     border-radius: 20px;
     background-color: lightgray;
-    color: white;
+    color: darkslategray;
     font-size: 15px;
     font-weight: bold;
 }
@@ -46,4 +46,9 @@
 
 .signBtn:hover{
     background-color: darkgray;
+}
+
+
+.signBtn:active{
+    background-color: rgb(92, 88, 88);
 }

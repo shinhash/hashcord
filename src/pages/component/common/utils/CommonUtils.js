@@ -1,3 +1,5 @@
+import axios from "axios";
+
 
 export function isValidation(parentDiv){
     const signDiv = document.getElementsByClassName(parentDiv)[0];
@@ -104,4 +106,15 @@ export function inputUserEmailRegExp(userEmailEvent){
         return false;
     }
     return true;
+}
+
+export async function axiosQueryApi({ urlInfo, searchInfo }){
+    const axiosResult = await axios.post( urlInfo, searchInfo );
+    const resultData = {
+        dataList    : axiosResult.data.resultData, 
+        errorCode   : axiosResult.data.errorCode,
+        errorDetail : axiosResult.data.errorDetail,
+    };
+    console.log('resultData : ', resultData);
+    return resultData;
 }

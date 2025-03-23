@@ -1,9 +1,18 @@
+import { useState } from "react";
 import SignInComp from "./comp/SignInComp";
 
-export default function SignInControllerPage(){
+function SignInControllerPage(){
+    const initState = { userId:'', userPw:'', };
+    const [userInfo, setUserInfo] = useState(initState);
+    
     return (
         <>
-            <SignInComp />
+            <SignInComp 
+                userInfo={userInfo} 
+                setUserInfo={setUserInfo}  
+            />
         </>
     );
-} 
+}
+
+export default SignInControllerPage;
