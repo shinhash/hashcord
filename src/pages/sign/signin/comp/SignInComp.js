@@ -1,6 +1,5 @@
-import { useState } from "react";
 import '../../../../css/sign/sign.css';
-import { isValidation, inputOnChange } from "../../../component/common/utils/CommonUtils";
+import { isValidation, objectChange } from "../../../component/common/utils/CommonUtils";
 
 function SignInComp({ userInfo, setUserInfo }){
     function signInClick(){
@@ -22,7 +21,7 @@ function SignInComp({ userInfo, setUserInfo }){
                         name={'userId'} 
                         value={userInfo.userId} 
                         onChange={(event) => {
-                            inputOnChange({
+                            objectChange({
                                 event, 
                                 stateInfo       : userInfo, 
                                 setStateInfo    : setUserInfo,
@@ -37,7 +36,7 @@ function SignInComp({ userInfo, setUserInfo }){
                         name={'userPw'} 
                         value={userInfo.userPw} 
                         onChange={(event) => {
-                            inputOnChange({
+                            objectChange({
                                 event, 
                                 stateInfo       : userInfo, 
                                 setStateInfo    : setUserInfo,

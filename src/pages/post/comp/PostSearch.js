@@ -1,3 +1,4 @@
+import { isValidation, objectChange } from "../../component/common/utils/CommonUtils";
 
 function PostSearch({searchInfo, setSearchInfo, searchClick}){
 
@@ -7,7 +8,18 @@ function PostSearch({searchInfo, setSearchInfo, searchClick}){
                 <div style={{marginRight: '10px'}}>
                     <div>
                         <span style={{marginRight: '5px'}}>제목</span>
-                        <input type='text' valeu={searchInfo.postTitle} />
+                        <input 
+                            type='text' 
+                            name={'postTitle'}
+                            onChange={(event) =>
+                                objectChange({
+                                    event, 
+                                    stateInfo    : searchInfo, 
+                                    setStateInfo : setSearchInfo,
+                                })
+                            } 
+                            value={searchInfo.postTitle} 
+                        />
                     </div>
                 </div>
                 <div>

@@ -1,6 +1,5 @@
 import axios from "axios";
 
-
 export function isValidation(parentDiv){
     const signDiv = document.getElementsByClassName(parentDiv)[0];
     const validateList = signDiv.getElementsByTagName('input');
@@ -27,27 +26,27 @@ export function isValidation(parentDiv){
     let isValidateResult = true;
     if(parentDiv === 'signDiv'){
         if(userPwEvent.value !== '' && !userPwReEvent) {
-            isValidateResult = inputUserPwRegExp(userPwEvent);
+            isValidateResult = passwordRegExp(userPwEvent);
         }else{
             if(userPwEvent.value !== '' &&  userPwReEvent.value !== '')
-                isValidateResult = inputUserPwAndUserPwReIsEquals(userPwEvent, userPwReEvent);
-            if(isValidateResult) isValidateResult = inputUserPwRegExp(userPwEvent);
-            if(isValidateResult) isValidateResult = inputUserEmailRegExp(userEmailEvent);
+                isValidateResult = passwordIsEquals(userPwEvent, userPwReEvent);
+            if(isValidateResult) isValidateResult = passwordRegExp(userPwEvent);
+            if(isValidateResult) isValidateResult = emailRegExp(userEmailEvent);
         }
     }
     return isValidateResult;
 }
 
-export function inputOnChange({event, stateInfo, setStateInfo}){
-    if(!inputOnChangeIsEmpty(event.target.value)) return;
-    if(!inputOnChangeRegExp(event)) return;
+export function objectChange({event, stateInfo, setStateInfo}){
+    if(!isEmpty(event.target.value)) return;
+    if(!speclCharRegExp(event)) return;
     setStateInfo({
         ...stateInfo,
         [event.target.name] : event.target.value,
     });
 }
 
-export function inputOnChangeIsEmpty(value){
+export function isEmpty(value){
     // eslint-disable-next-line
     const emptyExp = /\s/g;
 
@@ -58,7 +57,7 @@ export function inputOnChangeIsEmpty(value){
     return true;
 }
 
-export function inputOnChangeRegExp(event){
+export function speclCharRegExp(event){
     // eslint-disable-next-line
     const regExp = /[\{\}\[\]\/?.,;:|\)*~`!^\-_+<>@\#$%&\\\=\(\'\"]/g;
 
@@ -75,7 +74,7 @@ export function inputOnChangeRegExp(event){
     return regExpResult;
 }
 
-export function inputUserPwAndUserPwReIsEquals(userPwEvent, userPwReEvent){
+export function passwordIsEquals(userPwEvent, userPwReEvent){
     if(userPwEvent.value !== userPwReEvent.value){
         alert('입력하신 비밀번호가 일치하지 않습니다.');
         userPwReEvent.focus();
@@ -84,7 +83,7 @@ export function inputUserPwAndUserPwReIsEquals(userPwEvent, userPwReEvent){
     return true;
 }
 
-export function inputUserPwRegExp(userPwEvent){
+export function passwordRegExp(userPwEvent){
     // eslint-disable-next-line
     const regExp = /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{8,20}$/;
 
@@ -96,7 +95,7 @@ export function inputUserPwRegExp(userPwEvent){
     return true;
 }
 
-export function inputUserEmailRegExp(userEmailEvent){
+export function emailRegExp(userEmailEvent){
     // eslint-disable-next-line
     const regExp = /^[A-Za-z0-9]([-_.]?[A-Za-z0-9])*@[A-Za-z0-9]([-_.]?[A-Za-z0-9])*\.[A-Za-z]{2,3}$/;
     
@@ -109,12 +108,23 @@ export function inputUserEmailRegExp(userEmailEvent){
 }
 
 export async function axiosQueryApi({ urlInfo, searchInfo }){
-    const axiosResult = await axios.post( urlInfo, searchInfo );
-    const resultData = {
-        dataList    : axiosResult.data.resultData, 
-        errorCode   : axiosResult.data.errorCode,
-        errorDetail : axiosResult.data.errorDetail,
-    };
-    console.log('resultData : ', resultData);
-    return resultData;
+    let axiosResult = {};
+    await axios.post( urlInfo, searchInfo )
+    .then((resp) => {
+        if(resp.status === 200){
+            axiosResult = {
+                resultDataInfo  : resp.data.resultData, 
+                errorCode       : resp.data.errorCode,
+                errorDetail     : resp.data.errorDetail,
+            };
+        }
+    })
+    .catch((e) => {
+        axiosResult = {
+            resultDataInfo  : null, 
+            errorCode       : 'ERROR_CONNECTION_FAIL',
+            errorDetail     : 'ERROR_CONNECTION_FAIL',
+        };
+    });
+    return axiosResult;
 }

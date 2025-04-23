@@ -1,6 +1,6 @@
 import { useState } from "react";
 import '../../../../css/sign/sign.css';
-import { isValidation, inputOnChange } from "../../../component/common/utils/CommonUtils";
+import { isValidation, objectChange } from "../../../component/common/utils/CommonUtils";
 
 function SignUpComp(){
     const initState = { userId:'', userPw:'', userPwRe:'', userName:'', userEmail:'', };
@@ -25,7 +25,7 @@ function SignUpComp(){
                         name={'userId'} 
                         value={userInfo.userId} 
                         onChange={(event) => {
-                            inputOnChange({
+                            objectChange({
                                 event, 
                                 stateInfo       : userInfo, 
                                 setStateInfo    : setUserInfo,
@@ -40,7 +40,7 @@ function SignUpComp(){
                         name={'userPw'} 
                         value={userInfo.userPw} 
                         onChange={(event) => {
-                            inputOnChange({
+                            objectChange({
                                 event, 
                                 stateInfo       : userInfo, 
                                 setStateInfo    : setUserInfo,
@@ -55,7 +55,7 @@ function SignUpComp(){
                         name={'userPwRe'} 
                         value={userInfo.userPwRe} 
                         onChange={(event) => {
-                            inputOnChange({
+                            objectChange({
                                 event, 
                                 stateInfo       : userInfo, 
                                 setStateInfo    : setUserInfo,
@@ -70,7 +70,7 @@ function SignUpComp(){
                         name={'userName'} 
                         value={userInfo.userName} 
                         onChange={(event) => {
-                            inputOnChange({
+                            objectChange({
                                 event, 
                                 stateInfo       : userInfo, 
                                 setStateInfo    : setUserInfo,
@@ -85,7 +85,7 @@ function SignUpComp(){
                         name={'userEmail'} 
                         value={userInfo.userEmail} 
                         onChange={(event) => {
-                            inputOnChange({
+                            objectChange({
                                 event, 
                                 stateInfo       : userInfo, 
                                 setStateInfo    : setUserInfo,
