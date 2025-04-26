@@ -1,6 +1,6 @@
 import SignUpComp from './comp/SignUpComp'
 
-function SignUpControllerPage(){
+const SignUpControllerPage = () => {
     return (
         <>
             <SignUpComp />

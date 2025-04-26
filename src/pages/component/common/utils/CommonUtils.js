@@ -1,6 +1,4 @@
-import axios from "axios";
-
-export function isValidation(parentDiv){
+export const isValidation = (parentDiv) => {
     const signDiv = document.getElementsByClassName(parentDiv)[0];
     const validateList = signDiv.getElementsByTagName('input');
 
@@ -37,16 +35,16 @@ export function isValidation(parentDiv){
     return isValidateResult;
 }
 
-export function objectChange({event, stateInfo, setStateInfo}){
-    if(!isEmpty(event.target.value)) return;
+export const objectChange = (event, setStateInfo) => {
+    if(!isInputEmpty(event.target.value)) return;
     if(!speclCharRegExp(event)) return;
-    setStateInfo({
-        ...stateInfo,
+    setStateInfo((prev) => ({
+        ...prev,
         [event.target.name] : event.target.value,
-    });
+    }));
 }
 
-export function isEmpty(value){
+export const isInputEmpty = (value) => {
     // eslint-disable-next-line
     const emptyExp = /\s/g;
 
@@ -57,7 +55,19 @@ export function isEmpty(value){
     return true;
 }
 
-export function speclCharRegExp(event){
+export const isEmpty = (value) => {
+    if(value === null || value === undefined || value === ''){
+        return true;
+    }
+    if(value === typeof {}){
+        if(Object.keys(value).length === 0){
+            return true;
+        }
+    }
+    return false;
+};
+
+export const speclCharRegExp = (event) => {
     // eslint-disable-next-line
     const regExp = /[\{\}\[\]\/?.,;:|\)*~`!^\-_+<>@\#$%&\\\=\(\'\"]/g;
 
@@ -74,7 +84,7 @@ export function speclCharRegExp(event){
     return regExpResult;
 }
 
-export function passwordIsEquals(userPwEvent, userPwReEvent){
+export const passwordIsEquals = (userPwEvent, userPwReEvent) => {
     if(userPwEvent.value !== userPwReEvent.value){
         alert('입력하신 비밀번호가 일치하지 않습니다.');
         userPwReEvent.focus();
@@ -83,7 +93,7 @@ export function passwordIsEquals(userPwEvent, userPwReEvent){
     return true;
 }
 
-export function passwordRegExp(userPwEvent){
+export const passwordRegExp = (userPwEvent) => {
     // eslint-disable-next-line
     const regExp = /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{8,20}$/;
 
@@ -95,7 +105,7 @@ export function passwordRegExp(userPwEvent){
     return true;
 }
 
-export function emailRegExp(userEmailEvent){
+export const emailRegExp = (userEmailEvent) => {
     // eslint-disable-next-line
     const regExp = /^[A-Za-z0-9]([-_.]?[A-Za-z0-9])*@[A-Za-z0-9]([-_.]?[A-Za-z0-9])*\.[A-Za-z]{2,3}$/;
     
@@ -105,26 +115,4 @@ export function emailRegExp(userEmailEvent){
         return false;
     }
     return true;
-}
-
-export async function axiosQueryApi({ urlInfo, searchInfo }){
-    let axiosResult = {};
-    await axios.post( urlInfo, searchInfo )
-    .then((resp) => {
-        if(resp.status === 200){
-            axiosResult = {
-                resultDataInfo  : resp.data.resultData, 
-                errorCode       : resp.data.errorCode,
-                errorDetail     : resp.data.errorDetail,
-            };
-        }
-    })
-    .catch((e) => {
-        axiosResult = {
-            resultDataInfo  : null, 
-            errorCode       : 'ERROR_CONNECTION_FAIL',
-            errorDetail     : 'ERROR_CONNECTION_FAIL',
-        };
-    });
-    return axiosResult;
 }

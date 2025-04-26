@@ -5,7 +5,7 @@ import TestComponentControllerPage from "../pages/component/test/component/TestC
 import ProtectRoute from './ProtectRoute';
 import BasePage from '../pages/base/BasePage';
 import Chat from '../pages/chat/ChatControllerPage'
-import PostControllerPage from "../pages/post/PostControllerPage";
+import PostContainer from "../pages/post/PostContainer";
 
 const Router = createBrowserRouter([
     {
@@ -33,7 +33,7 @@ const Router = createBrowserRouter([
             },
             {
                 path    : '/post',
-                element : <PostControllerPage />
+                element : <PostContainer />
             },
         ],
     },

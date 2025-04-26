@@ -1,8 +1,8 @@
 import '../../../../css/sign/sign.css';
 import { isValidation, objectChange } from "../../../component/common/utils/CommonUtils";
 
-function SignInComp({ userInfo, setUserInfo }){
-    function signInClick(){
+const SignInComp = ({ userInfo, setUserInfo }) => {
+    const signInClick = () => {
         const parentDiv = 'signDiv';
         if(!isValidation(parentDiv)) return;
 
@@ -19,14 +19,13 @@ function SignInComp({ userInfo, setUserInfo }){
                     <input className='signInput'
                         type={'text'} 
                         name={'userId'} 
-                        value={userInfo.userId} 
                         onChange={(event) => {
-                            objectChange({
+                            objectChange(
                                 event, 
-                                stateInfo       : userInfo, 
-                                setStateInfo    : setUserInfo,
-                            })
+                                setUserInfo,
+                            )
                         }}
+                        value={userInfo.userId || ''} 
                         placeholder="아이디를 입력해주세요." 
                     />
                 </div>
@@ -34,14 +33,13 @@ function SignInComp({ userInfo, setUserInfo }){
                     <input className='signInput'
                         type={'password'} 
                         name={'userPw'} 
-                        value={userInfo.userPw} 
                         onChange={(event) => {
-                            objectChange({
+                            objectChange(
                                 event, 
-                                stateInfo       : userInfo, 
-                                setStateInfo    : setUserInfo,
-                            })
+                                setUserInfo,
+                            )
                         }}
+                        value={userInfo.userPw || ''} 
                         placeholder="비밀번호를 입력해주세요." 
                     />
                 </div>

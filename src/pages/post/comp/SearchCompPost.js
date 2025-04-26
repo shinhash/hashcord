@@ -1,6 +1,6 @@
-import { isValidation, objectChange } from "../../component/common/utils/CommonUtils";
+import { objectChange } from "../../component/common/utils/CommonUtils";
 
-function PostSearch({searchInfo, setSearchInfo, searchClick}){
+const searchCompPost = ({srchObjCnd, setSrchObjCnd, searchClick}) => {
 
     return (
         <div style={{height: '10%', textAlign: 'center'}}>
@@ -11,14 +11,13 @@ function PostSearch({searchInfo, setSearchInfo, searchClick}){
                         <input 
                             type='text' 
                             name={'postTitle'}
-                            onChange={(event) =>
-                                objectChange({
-                                    event, 
-                                    stateInfo    : searchInfo, 
-                                    setStateInfo : setSearchInfo,
-                                })
+                            onChange={(event) => 
+                                objectChange(
+                                    event,
+                                    setSrchObjCnd,
+                                )
                             } 
-                            value={searchInfo.postTitle} 
+                            value={srchObjCnd.postTitle || ''} 
                         />
                     </div>
                 </div>
@@ -30,4 +29,4 @@ function PostSearch({searchInfo, setSearchInfo, searchClick}){
     );
 }
 
-export default PostSearch;
+export default searchCompPost;

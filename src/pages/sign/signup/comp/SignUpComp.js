@@ -2,11 +2,11 @@ import { useState } from "react";
 import '../../../../css/sign/sign.css';
 import { isValidation, objectChange } from "../../../component/common/utils/CommonUtils";
 
-function SignUpComp(){
+const SignUpComp = () => {
     const initState = { userId:'', userPw:'', userPwRe:'', userName:'', userEmail:'', };
     const [userInfo, setUserInfo] = useState(initState);
 
-    function signUpClick(){
+    const signUpClick = () => {
         const parentDiv = 'signDiv';
         if(!isValidation(parentDiv)) return;
 
@@ -23,14 +23,13 @@ function SignUpComp(){
                     <input className='signInput'
                         type={'text'} 
                         name={'userId'} 
-                        value={userInfo.userId} 
                         onChange={(event) => {
-                            objectChange({
+                            objectChange(
                                 event, 
-                                stateInfo       : userInfo, 
-                                setStateInfo    : setUserInfo,
-                            })
+                                setUserInfo,
+                            )
                         }}
+                        value={userInfo.userId || ''} 
                         placeholder="아이디를 입력해주세요." 
                     />
                 </div>
@@ -38,14 +37,13 @@ function SignUpComp(){
                     <input className='signInput'
                         type={'password'} 
                         name={'userPw'} 
-                        value={userInfo.userPw} 
                         onChange={(event) => {
-                            objectChange({
+                            objectChange(
                                 event, 
-                                stateInfo       : userInfo, 
-                                setStateInfo    : setUserInfo,
-                            })
+                                setUserInfo,
+                            )
                         }}
+                        value={userInfo.userPw || ''}
                         placeholder="비밀번호를 입력해주세요." 
                     />
                 </div>
@@ -55,11 +53,10 @@ function SignUpComp(){
                         name={'userPwRe'} 
                         value={userInfo.userPwRe} 
                         onChange={(event) => {
-                            objectChange({
+                            objectChange(
                                 event, 
-                                stateInfo       : userInfo, 
-                                setStateInfo    : setUserInfo,
-                            })
+                                setUserInfo,
+                            )
                         }}
                         placeholder="비밀번호를 입력해주세요." 
                     />
@@ -70,11 +67,10 @@ function SignUpComp(){
                         name={'userName'} 
                         value={userInfo.userName} 
                         onChange={(event) => {
-                            objectChange({
+                            objectChange(
                                 event, 
-                                stateInfo       : userInfo, 
-                                setStateInfo    : setUserInfo,
-                            })
+                                setUserInfo,
+                            )
                         }}
                         placeholder="이름을 입력해주세요." 
                     />
@@ -85,11 +81,10 @@ function SignUpComp(){
                         name={'userEmail'} 
                         value={userInfo.userEmail} 
                         onChange={(event) => {
-                            objectChange({
+                            objectChange(
                                 event, 
-                                stateInfo       : userInfo, 
-                                setStateInfo    : setUserInfo,
-                            })
+                                setUserInfo,
+                            )
                         }}
                         placeholder="이메일을 입력해주세요." 
                     />

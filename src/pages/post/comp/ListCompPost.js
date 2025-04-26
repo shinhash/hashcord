@@ -1,5 +1,5 @@
 
-function PostList({dataList}){
+const ListCompPost = ({dataList}) => {
     return (
         <div>
             <div>
@@ -39,4 +39,4 @@ function PostList({dataList}){
     );
 }
 
-export default PostList;
+export default ListCompPost;
