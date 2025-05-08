@@ -1,11 +1,12 @@
 import { createBrowserRouter } from "react-router-dom";
+import BaseLayout from "../pages/base/layout/BaseLayout";
+// import ProtectRoute from './ProtectRoute';
 import SignIn from '../pages/sign/signin/SignInControllerPage';
 import SignUp from '../pages/sign/signup/SignUpControllerPage';
-import TestComponentControllerPage from "../pages/component/test/component/TestComponentControllerPage";
-import ProtectRoute from './ProtectRoute';
 import BasePage from '../pages/base/BasePage';
-import Chat from '../pages/chat/ChatControllerPage'
 import PostContainer from "../pages/post/PostContainer";
+// import Chat from '../pages/chat/ChatControllerPage'
+// import TestComponentControllerPage from "../pages/component/test/component/TestComponentControllerPage";
 
 const Router = createBrowserRouter([
     {
@@ -16,10 +17,6 @@ const Router = createBrowserRouter([
                 element : <BasePage />
             },
             {
-                path    : '/testComponent',
-                element : <TestComponentControllerPage />
-            },
-            {
                 path    : '/signIn',
                 element : <SignIn />
             },
@@ -28,13 +25,17 @@ const Router = createBrowserRouter([
                 element : <SignUp />
             },
             {
-                path    : '/chat',
-                element : <ProtectRoute><Chat /></ProtectRoute>
-            },
-            {
                 path    : '/post',
-                element : <PostContainer />
+                element : <BaseLayout><PostContainer /></BaseLayout>
             },
+            // {
+            //     path    : '/chat',
+            //     element : <ProtectRoute><Chat /></ProtectRoute>
+            // },
+            // {
+            //     path    : '/testComponent',
+            //     element : <TestComponentControllerPage />
+            // },
         ],
     },
 ]);

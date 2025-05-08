@@ -1,3 +1,29 @@
+export const customModalStyles = {
+    overlay: {
+        backgroundColor: " rgba(0, 0, 0, 0.4)",
+        width: "100%",
+        height: "100vh",
+        zIndex: "10",
+        position: "fixed",
+        top: "0",
+        left: "0",
+    },
+    content: {
+        width: "360px",
+        height: "180px",
+        zIndex: "150",
+        position: "absolute",
+        top: "50%",
+        left: "50%",
+        transform: "translate(-50%, -50%)",
+        borderRadius: "10px",
+        boxShadow: "2px 2px 2px rgba(0, 0, 0, 0.25)",
+        backgroundColor: "white",
+        justifyContent: "center",
+        overflow: "auto",
+    },
+};
+
 export const isValidation = (parentDiv) => {
     const signDiv = document.getElementsByClassName(parentDiv)[0];
     const validateList = signDiv.getElementsByTagName('input');
@@ -35,12 +61,11 @@ export const isValidation = (parentDiv) => {
     return isValidateResult;
 }
 
-export const objectChange = (event, setStateInfo) => {
-    if(!isInputEmpty(event.target.value)) return;
+export const objectChange = (event, setStateInfo, targetName, targetValue) => {
     if(!speclCharRegExp(event)) return;
     setStateInfo((prev) => ({
         ...prev,
-        [event.target.name] : event.target.value,
+        [targetName] : targetValue,
     }));
 }
 

@@ -9,6 +9,7 @@ export const useQueryApi = ( url, parmas ) => {
     const apiAction = async () => {
         try{
             setLoading(true);
+            url = 'http://localhost:8099' + url;
             const response = await client.post( url, parmas );
             setData(response.data.resultData);
             if(response.status === 200){
