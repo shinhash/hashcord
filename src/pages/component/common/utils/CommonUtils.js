@@ -9,8 +9,8 @@ export const customModalStyles = {
         left: "0",
     },
     content: {
-        width: "360px",
-        height: "180px",
+        width: "80%",
+        height: "85%",
         zIndex: "150",
         position: "absolute",
         top: "50%",

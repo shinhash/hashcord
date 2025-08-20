@@ -19,7 +19,7 @@ const ListCompPost = ({dataList}) => {
         // eslint-disable-next-line
     }, [modalOpen])
 
-    /* 채널 게시글 목록 조회 */
+    /* 채널 게시글 상세 조회 */
     const selectPostDetailUrl = '/hashcord/post/selectPostDetail';
     const {
         data: selectPostDetailData,
@@ -93,9 +93,7 @@ const ListCompPost = ({dataList}) => {
                 ariaHideApp={false}
                 contentLabel="Pop up Message"
             >
-                <DetailCompPost 
-                    params={params}
-                />
+                <DetailCompPost params={params} />
             </Modal>
         </>
     );

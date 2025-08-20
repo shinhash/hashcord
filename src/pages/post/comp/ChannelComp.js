@@ -1,22 +1,25 @@
 import { isEmpty, objectChange } from "../../component/common/utils/CommonUtils";
 import CHANEL_LOGO_NOJAM from '../../../cont/img/CHANEL_LOGO_NOJAM.png';
 
-const ChannelComp = ({srchObjCnd, setSrchObjCnd, setSearchRefetch, chanelCategoryList}) => {
+const ChannelComp = ({srchObjCnd, setSrchObjCnd, setSearchRefetch, chanelCategoryList, chanelSubScribCnt}) => {
     return (
         <>
             <div style={{ display:'flex' }}>
                 <div id="chanelLogo">
-                    <img style={{width: '30px', height: '30px'}} alt="채널 로고" src={CHANEL_LOGO_NOJAM} />
+                    <img style={{width: '60px', height: '60px'}} alt="채널 로고" src={CHANEL_LOGO_NOJAM} />
                 </div>
                 <div id="chanelName">
+                    <div>
                     {chanelCategoryList.length > 0 ? 
                         chanelCategoryList[0].chanelNm + ' 채널'
                         : 
                         ''
                     }
+                    </div>
+                    <div>{`구독자 ${chanelSubScribCnt} 명`}</div>
                 </div>
-                <div id="chanelBtn">
-                    <input type="button" value={'구독'} />
+                <div id="chanelBtn" style={{width: '80%'}}>
+                    <input type="button" value={'구독'} style={{width:'80px', height:'50px', float: 'right'}} />
                 </div>
             </div>
             <div>

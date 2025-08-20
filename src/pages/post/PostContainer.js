@@ -8,6 +8,7 @@ import { isEmpty } from '../component/common/utils/CommonUtils';
 
 const PostContainer = () => {
     const [ chanelCategoryList, setChanelCategoryList ] = useState([]);
+    const [ chanelSubScribCnt, setChanelSubScribCnt ] = useState(0);
     const [ dataList, setDataList ] = useState([]);
     const [ srchObjCnd, setSrchObjCnd ] = useState({});
 
@@ -27,8 +28,28 @@ const PostContainer = () => {
     useEffect(() => {
         selectChanelCategoryApiAction(srchObjCnd);
         selectPostApiAction(srchObjCnd);
+        selectChanelSubScribCntApiAction(srchObjCnd);
         // eslint-disable-next-line
     }, []);
+
+    /* 채널 구독자 수 조회 */
+    const selectChanelSubScribCntUrl = '/hashcord/post/selectChanelSubScribCnt';
+    const {
+        data: selectChanelSubScribCntData,
+        loading : selectChanelSubScribCntLoading,
+        error : selectChanelSubScribCntError,
+        apiAction : selectChanelSubScribCntApiAction,
+    } = useQueryApi( selectChanelSubScribCntUrl, srchObjCnd );
+    useEffect(() => {
+        if(!selectChanelSubScribCntLoading){
+            if(!isEmpty(selectChanelSubScribCntError)){
+                return;
+            }
+            if(selectChanelSubScribCntData){
+                setChanelSubScribCnt(selectChanelSubScribCntData);
+            }
+        }
+    }, [selectChanelSubScribCntLoading, selectChanelSubScribCntError, selectChanelSubScribCntData]);
 
     /* 채널 카테고리 목록 조회 */
     const selectChanelCategoryUrl = '/hashcord/post/selectChanelCategoryList';
@@ -75,6 +96,7 @@ const PostContainer = () => {
                 setSrchObjCnd={setSrchObjCnd}
                 setSearchRefetch={setSearchRefetch}
                 chanelCategoryList={chanelCategoryList}
+                chanelSubScribCnt={chanelSubScribCnt}
             />
             <ListCompPost 
                 dataList={dataList} 

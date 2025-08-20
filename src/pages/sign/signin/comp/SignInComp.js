@@ -23,6 +23,8 @@ const SignInComp = ({ userInfo, setUserInfo }) => {
                             objectChange(
                                 event, 
                                 setUserInfo,
+                                'userId',
+                                event.target.value,
                             )
                         }}
                         value={userInfo.userId || ''} 
@@ -37,6 +39,8 @@ const SignInComp = ({ userInfo, setUserInfo }) => {
                             objectChange(
                                 event, 
                                 setUserInfo,
+                                'userPw',
+                                event.target.value,
                             )
                         }}
                         value={userInfo.userPw || ''} 
