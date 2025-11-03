@@ -13,7 +13,7 @@ const BaseLayoutTop = () => {
             </div>
             <div style={{ width: '70%' }}></div>
             <div id="siteMyInfo" style={{ width: '10%', display: 'flex', flexDirection: 'row', paddingTop: '14px' }}>
-                <span>{userInfo.userNm||''}</span>
+                <span>{userInfo ?? ''}</span>
                 <img style={{ width: '25px', height: '25px' }} alt="siteMyInfo" src={siteMyInfo} />
             </div>
         </div>
