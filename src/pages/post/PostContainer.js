@@ -2,9 +2,11 @@
 import ChannelComp from './comp/ChannelComp';
 import SearchCompPost from './comp/SearchCompPost'
 import ListCompPost from './comp/ListCompPost';
+import EditCompPost from './comp/EditCompPost';
 import { useEffect, useState } from 'react';
 import { useQueryApi } from '../component/common/hooks/useQueryApi';
 import { isEmpty } from '../component/common/utils/CommonUtils';
+import { Space } from '../component/common/tags/CommonTags';
 
 const PostContainer = () => {
     const [ chanelCategoryList, setChanelCategoryList ] = useState([]);
@@ -101,6 +103,15 @@ const PostContainer = () => {
             <ListCompPost 
                 dataList={dataList} 
             />
+
+            <Space />
+
+            <EditCompPost 
+                editTypeInfo={'insert'}
+                chanelCategoryList={chanelCategoryList}
+                setSearchRefetch={setSearchRefetch}
+            />
+
             <SearchCompPost 
                 srchObjCnd={srchObjCnd}
                 setSrchObjCnd={setSrchObjCnd}

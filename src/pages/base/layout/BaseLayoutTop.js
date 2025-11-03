@@ -2,7 +2,7 @@ import siteLogo from '../../../cont/img/siteLogo.svg';
 import siteMyInfo from '../../../cont/img/siteMyInfo.png';
 
 const BaseLayoutTop = () => {
-
+    const userInfo = JSON.parse(sessionStorage.getItem('signUserInfo'));
     return(
         <div style={{ display:'flex', backgroundColor: '#3d414d' }}>
             <div id="siteLogo">
@@ -13,7 +13,7 @@ const BaseLayoutTop = () => {
             </div>
             <div style={{ width: '70%' }}></div>
             <div id="siteMyInfo" style={{ width: '10%', display: 'flex', flexDirection: 'row', paddingTop: '14px' }}>
-                <span></span>
+                <span>{userInfo.userNm||''}</span>
                 <img style={{ width: '25px', height: '25px' }} alt="siteMyInfo" src={siteMyInfo} />
             </div>
         </div>

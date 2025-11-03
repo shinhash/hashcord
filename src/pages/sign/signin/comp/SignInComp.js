@@ -1,13 +1,40 @@
+import { useEffect } from 'react';
 import '../../../../css/sign/sign.css';
-import { isValidation, objectChange } from "../../../component/common/utils/CommonUtils";
+import { useQueryApi } from '../../../component/common/hooks/useQueryApi';
+import { isEmpty, isValidation, objectChange } from "../../../component/common/utils/CommonUtils";
+import { useNavigate } from 'react-router-dom';
 
 const SignInComp = ({ userInfo, setUserInfo }) => {
+    const navigate = useNavigate();
     const signInClick = () => {
         const parentDiv = 'signDiv';
         if(!isValidation(parentDiv)) return;
-
-        console.log('userInfo : ', userInfo);
+        signInApiAction();
     }
+
+    /* 로그인 */
+    const signInUrl = '/hashcord/sign/signIn';
+    const {
+        data: signInData,
+        loading : signInLoading,
+        error : signInError,
+        apiAction : signInApiAction,
+    } = useQueryApi( signInUrl, userInfo );
+    useEffect(() => {
+        if(!signInLoading){
+            if(!isEmpty(signInError)){
+                return;
+            }
+            console.log(signInData.userNm);
+            let userInfo = {
+                userId : signInData.userId,
+                userNm : signInData.userNm,
+            }
+            sessionStorage.setItem('signUserInfo', JSON.stringify(userInfo));
+            navigate('/post');
+        }
+        // eslint-disable-next-line
+    }, [signInLoading, signInError, signInData]);
 
     return (
         <>
